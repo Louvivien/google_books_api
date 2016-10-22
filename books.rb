@@ -20,7 +20,7 @@ def perform_search(text)
     #Remove duplicates based on title. (for example: Alice's Adventures in Wonderland (1920) and Alice's Adventures in Wonderland (1898))
     books.uniq!{|b| b['volumeInfo']['title']}
 
-    books.each_with_index do |book, i|
+    books.map.with_index(1) do |book, i|
       puts "#{i}: #{book['volumeInfo'].fetch('authors', ['-unknown-']).join(', ')} - #{book['volumeInfo']['title']} (#{book['volumeInfo']['publishedDate']})"
     end
   end
